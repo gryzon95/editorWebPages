@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     var elementAppend ='';
     var cntElements = 0;
 
@@ -8,13 +9,18 @@ $(document).ready(function(){
         elementAppend +='</a></h4></div><div id="element'+cntElements+'" class="panel-collapse collapse"><div class="panel-body"><ul id="draglistelement" class="elements">';
 
         $.each(value.items, function(k,v){
-            elementAppend += '<li draggable="true" class="element-item draggable" data-source=\''+v.source+'\'>'+v.icon+' <span>'+v.displayName+'</span></li>';
+            console.log(v.getDisplayName());
+            elementAppend += '<li draggable="true" class="element-item draggable" data-obj="' + k +'">'+v.getIcon()+' <span>'+v.getDisplayName()+'</span></li>';
         });
 
         elementAppend += '</ul></div></div></div>';
         cntElements++;
     });
     $(elementAppend).appendTo('#accordion-elements');
+
+
+
+
 
 
     $('.expand-item, .expand-property').on('click', function(){
@@ -60,7 +66,10 @@ $(function(){
     
     var element = $();
     $('.draggable').on('dragstart', function(){
-        element = $($(this).data('source'));
+       // element = $($(this).data('source'));
+
+        var obj = $(this).data('obj');
+        element = elements.containers.items[obj];
     });
 
     $(".draggable").on('dragend',function(event) {
@@ -85,8 +94,6 @@ $(function(){
             event.preventDefault();
             event.stopPropagation();
             $(event.target).css('background-color', 'rgba(0,255,0,0.4)');
-
-            
         }).on('dragleave', function(event){
             $(event.target).css('background-color', 'initial');
         });
@@ -100,18 +107,20 @@ $(function(){
             $(target).css('background-color', 'initial');
 
             if(getPossition(this,event) == 'top' || getPossition(this,event) == 'left') {
-                element.attr('id', 'element_id_'+totalElements).insertBefore($(target))
+                $(element.getSource()).attr('id', 'element_id_'+totalElements).insertBefore($(target))
                     .on('click', addElementClick(this, event))
                     .on('mouseleave', addElementMouseLeave(this, event))
                     .on('mouseover', addElementMouseOver(this, event)); 
             } else if(getPossition(this,event) == 'bottom' || getPossition(this,event) == 'right') {
-                element.attr('id', 'element_id_'+totalElements).insertAfter($(target))
+                $(element.getSource()).attr('id', 'element_id_'+totalElements).insertAfter($(target))
                     .on('click', addElementClick(this, event))
                     .on('mouseleave', addElementMouseLeave(this, event))
                     .on('mouseover', addElementMouseOver(this, event)); 
             } else {            
-                element.attr('id', 'element_id_'+totalElements).appendTo($(target))
-                    .on('click', addElementClick(this, event))
+                $(element.getSource()).attr('id', 'element_id_'+totalElements).appendTo($(target))
+                    .on('click', function () {
+                        console.log('sss');
+                    })
                     .on('mouseleave', addElementMouseLeave(this, event))
                     .on('mouseover', addElementMouseOver(this, event)); 
             }
@@ -180,20 +189,27 @@ function addElementClick(obj, event)
 {
     event.preventDefault();
     event.stopPropagation();
+    console.log('xxx');
     $('#edited_element_id').val($(event.target).attr('id'));
-    getOptions($(obj).attr('data-allowedOptions'));
+    /*getOptions($(obj).attr('data-allowedOptions'));
     $(optionsElements).removeClass('options-no-active').addClass('options-active');
-    $(obj).append(optionsElements).find('.label-element').html('element_id_'+totalElements);
+    $(obj).append(optionsElements).find('.label-element').html('element_id_'+totalElements);*/
 }
 
 function addElementMouseLeave(obj, event)
 {
     $(obj).find('.options-no-active').remove();
+    $(obj).css({'background-color' : '#fff'});
+    console.log('test2');
 }
 
 function addElementMouseOver(obj, event)
 {
     event.preventDefault();
     event.stopPropagation();
-    $(obj).append(optionsElements).find('.label-element').html('element_id_'+totalElements);     
+    $(obj).css({'background-color':'rgba(0,255,0,0.4)'});
+    console.log('test');
+    //$(obj).append(optionsElements).find('.label-element').html('element_id_'+totalElements);
 }
+
+

@@ -1,14 +1,33 @@
 var draggElement = function(options) {
-    var vars = {
-        name: 'Name',
-        source: 'source',
+    var settings = {
+        name: '',
+        displayName: '',
+        icon: '',
+        source: '',
+        draggable: true,
+        allowedOptions: [],
     }
 
-    this.constructor = function (options) {
-        $.extend(vars, options);
+    this.construct = function (options) {
+        $.extend(settings, options);
+
     }
     
     this.getName = function () {
-        console.log(vars.name);
+        return settings.name;
     }
+
+    this.getSource = function () {
+        return settings.source;
+    }
+
+    this.getDisplayName = function () {
+        return settings.displayName;
+    }
+
+    this.getIcon = function () {
+        return settings.icon;
+    }
+
+    this.construct(options);
 }

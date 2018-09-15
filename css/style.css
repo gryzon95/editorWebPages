@@ -120,11 +120,11 @@ header h1 {
     background-color: #3f3f46;
     cursor: move;
 }
-.moveable:hover{
-    /*border:1px solid blue !important;*/
+/*.moveable:only-child:hover{
+    /*border:1px solid blue !important;
     background-color: rgba(0,255,0,0.4) !important;
     cursor: pointer;
-}
+}*/
 
 #accordion-properties {
     display: none;
