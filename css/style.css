@@ -38,6 +38,16 @@ iframe {
 }
 */
 
+#result-body .container,
+#result-body .container-fluid,
+#result-body .row,
+#result-body [class*=col-]
+{
+    background-color: #cecece;
+    min-height: 40px;
+    padding: 5px 0px;
+}
+
 #result-body {
     background-color: #fff;
 }
@@ -121,8 +131,6 @@ header h1 {
     cursor: move;
 }
 .moveable:hover{
-    /*border:1px solid blue !important;*/
-    background-color: rgba(0,255,0,0.4) !important;
     cursor: pointer;
 }
 
@@ -176,10 +184,11 @@ header h1 {
 
 .options-elements .label-element,
 .optEl .label-element {
-    font-size:8px;
+    font-size:12px;
     text-align: right;
     background-color: #ebebeb;
     border-radius: 10px;
+    padding: 5px;
 }
 
 .col-md-4 {
@@ -188,4 +197,47 @@ header h1 {
 
 .row {
     min-height: 50px;
+}
+
+.arr {
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.fa-angle-double-up,
+.fa-angle-double-down {
+    left: 50%;
+}
+
+.fa-angle-double-right,
+.fa-angle-double-left {
+    top: 50%;
+}
+.fa-angle-double-up {
+    top: 5px;
+}
+
+.fa-angle-double-down {
+    bottom: 5px;
+}
+
+.fa-angle-double-right {
+    right: 5px;
+}
+
+.fa-angle-double-left {
+    left: 5px;
+}
+
+.form-inline {
+    display:inline-block;
+}
+
+.hover {
+    background-color: rgba(0,255,0,.4) !important;
+}
+
+.active {
+    border: 1px solid rgba(0,255,0,.4) !important;
 }

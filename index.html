@@ -6,9 +6,10 @@
         <title>Generator Stron</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/fontawesome/fontawesome-all.min.css" rel="stylesheet">
-        <link href="css/jquery.custom-scrollbar.css" rel="stylesheet">
+        <link href="css/vendor/jquery.minicolors.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
 
     </head>
@@ -35,9 +36,18 @@
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     <div class="options">
+                        <form id="upload-file-form" class="form-inline" role="form" action="upload.php" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="sr-only" for="field_file">Wybierz plik</label>
+                                <input type="hidden" name="submit" value="1">
+                                <input class="form-control" id="field_file" type="file" name="file" id="file">
+                            </div>
+                            <button id="btn-upload-source" type="submit" class="btn btn-success"><i class="fas fa-upload"></i></button>
+                        </form>
                         <button class="btn btn-success"><i class="fas fa-code"></i></button>
                         <button class="btn btn-success"><i class="fas fa-arrows-alt"></i></button>
                         <button id="btn-download-source" class="btn btn-success"><i class="fas fa-download"></i></button>
+
                     </div>
 
                             <iframe id="resultFrame" src="./result.html" style="width: 100%; height: 400px;"></iframe>
@@ -150,6 +160,92 @@
                                         <label for="text">Szerokość:</label>
                                         <input class="form-control" type="text" name="width"/>
                                     </div>
+                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                        <label for="text">Ilość kolumn na telefonach:</label>
+                                        <select name="small-column">
+                                            <option value="col-sm-1">1</option>
+                                            <option value="col-sm-2">2</option>
+                                            <option value="col-sm-3">3</option>
+                                            <option value="col-sm-4">4</option>
+                                            <option value="col-sm-5">5</option>
+                                            <option value="col-sm-6">6</option>
+                                            <option value="col-sm-7">7</option>
+                                            <option value="col-sm-8">8</option>
+                                            <option value="col-sm-9">9</option>
+                                            <option value="col-sm-10">10</option>
+                                            <option value="col-sm-11">11</option>
+                                            <option value="col-sm-12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                        <label for="text">Ilość kolumn na tabletach/laptopach:</label>
+                                        <select name="medium-column">
+                                            <option value="col-md-1">1</option>
+                                            <option value="col-md-2">2</option>
+                                            <option value="col-md-3">3</option>
+                                            <option value="col-md-4">4</option>
+                                            <option value="col-md-5">5</option>
+                                            <option value="col-md-6">6</option>
+                                            <option value="col-md-7">7</option>
+                                            <option value="col-md-8">8</option>
+                                            <option value="col-md-9">9</option>
+                                            <option value="col-md-10">10</option>
+                                            <option value="col-md-11">11</option>
+                                            <option value="col-md-12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                        <label for="text">Ilość kolumn na urządzeniach średnich ekranach:</label>
+                                        <select name="large-column">
+                                            <option value="col-lg-1">1</option>
+                                            <option value="col-lg-2">2</option>
+                                            <option value="col-lg-3">3</option>
+                                            <option value="col-lg-4">4</option>
+                                            <option value="col-lg-5">5</option>
+                                            <option value="col-lg-6">6</option>
+                                            <option value="col-lg-7">7</option>
+                                            <option value="col-lg-8">8</option>
+                                            <option value="col-lg-9">9</option>
+                                            <option value="col-lg-10">10</option>
+                                            <option value="col-lg-11">11</option>
+                                            <option value="col-lg-12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                        <label for="text">Ilość kolumn na dużych ekranach:</label>
+                                        <select name="xlarge-column">
+                                            <option value="col-xl-1">1</option>
+                                            <option value="col-xl-2">2</option>
+                                            <option value="col-xl-3">3</option>
+                                            <option value="col-xl-4">4</option>
+                                            <option value="col-xl-5">5</option>
+                                            <option value="col-xl-6">6</option>
+                                            <option value="col-xl-7">7</option>
+                                            <option value="col-xl-8">8</option>
+                                            <option value="col-xl-9">9</option>
+                                            <option value="col-xl-10">10</option>
+                                            <option value="col-xl-11">11</option>
+                                            <option value="col-xl-12">12</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="expand-property" data-toggle="collapse" data-parent="#accordion-properties" href="#property4">
+                                        <i class="fas fa-angle-right"></i> Inne:
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="property4" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                        <label for="text">Odnośnik:</label>
+                                        <input class="form-control" type="text" name="href">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -160,18 +256,12 @@
         </div>
 
 
-
-
-
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
         <script src="js/jquery/jquery-3.3.1.js"></script>
-       
         <script src="js/jquery/jquery-rotate.min.js"></script>
-        <script src="js/jquery/jquery.custom-scrollbar.min.js"></script>
+        <script src="js/jquery/jquery.alterclass.js"></script>
+        <script src="js/jquery/jquery.minicolors.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/elements.js"></script>
-        <script src="js/draggable.js"></script>
         <script src="js/script.js"></script>
     </body>
-
 </html>
