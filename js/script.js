@@ -113,30 +113,7 @@ $(document).ready(function () {
             cache: false,
             timeout: 600000,
             success: function (data) {
-
-                //console.log("SUCCESS : ", data);
-                /*console.log($.parseXML(data));
-                $($('#resultFrame').get(0).contentWindow.document.body).html($.parseHTML(data)[1]);
-                $($('#resultFrame').get(0).contentWindow.document.body).append($.parseHTML(data)[13]);*/
-
-
-                /*$($('#resultFrame').get(0).contentWindow.document.body).html(data);
-                upload = true;
-                //console.log($('#resultFrame').get(0).contentWindow.document.body);
-
-                $($('#resultFrame').get(0).contentWindow.document.body).find('*')
-
-                   $(index).on('dragstart', function () {
-                       element = $(this);
-                       console.log('start');
-                   });
-
-                    */
-
-
                 $('#resultFrame').attr('src', './upload/plik.html');
-
-                //console.log($('#resultFrame').get(0).contentWindow.document);
             },
             error: function (e) {
                 console.log("ERROR : ", e);
@@ -155,13 +132,7 @@ $(function () {
     //var optEl = $('<div class="optEl"><button class="btn-opt btn btn-danger btn-delete-item"><i class="fa fa-trash-alt"></i></button><span class="label-element"></span></div>');
 
 
-
-
-
-
     $('#resultFrame').on('load', function () {
-        console.log('load');
-
 
         $('.draggable').on('dragstart', function () {
             element = $($(this).data('source'));
@@ -174,8 +145,6 @@ $(function () {
 
         $('.draggable').on('dragleave', function (event) {
         });
-
-
 
         $(resultFrame.document.body).on('click', function () {
             $(resultFrame.document.body).find('*').removeClass('active');
@@ -190,8 +159,6 @@ $(function () {
         if(Math.max.apply(Math, arrayOfId) != '-Infinity') {
             totalElements = Math.max.apply(Math, arrayOfId) +1;
         }
-        console.log(Math.max.apply(Math, arrayOfId) != '-Infinity');
-        console.log(totalElements);
 
         // Obsługa zdarzeń na każdym elemencie w ciele iframeu
         $(resultFrame.document.body).find('*')
@@ -236,6 +203,7 @@ $(function () {
             })
             .on('dragleave', function (event) {
                 $(event.target).removeClass('hover');
+                $(event.target).find('[class*="fa-angle-double-"]').remove();
             })
             .on('dragend', function (event) {
                 $(event.target).removeClass('hover');
