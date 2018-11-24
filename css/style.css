@@ -152,8 +152,9 @@ header h1 {
     margin-bottom: 0px;
 }
 
-.property input {
-    max-height: 18px;
+.property input,
+.property select {
+    max-height: 35px;
     background-color: #3f3f46;
     border: 2px solid #434346;
     width: 100% !important;

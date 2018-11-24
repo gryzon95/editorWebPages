@@ -1,3 +1,8 @@
+var upload = false;
+var totalElements = 0;
+var element = $();
+var arrayOfId = [];
+
 $(document).ready(function () {
     var elementAppend = '';
     var cntElements = 0;
@@ -40,6 +45,11 @@ $(document).ready(function () {
         if(changedPropertyName == "href") {
             $(iframe).find(edited_element_id).prop('href', $(this).val());
         }
+
+
+        $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
+        $(iframe).find(edited_element_id).data('value', $(this).val());
+
     });
 
     $('.property select').on('change', function () {
@@ -60,6 +70,9 @@ $(document).ready(function () {
         if(changedPropertyName == "xlarge-column") {
             $(iframe).find(edited_element_id).alterClass('col-xl-*', $(this).val());
         }
+
+        $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
+        $(iframe).find(edited_element_id).data('value', $(this).val());
     });
 
 
@@ -78,7 +91,7 @@ $(document).ready(function () {
 
         headSrc.find('style').remove();
 
-        var src = '<html>' + headSrc.html() + bodySrc + '</html>';
+        var src = '<html><head>' + headSrc.html() + '</head><body>' + bodySrc + '</body></html>';
         $('<a href="data:text/html,' + encodeURIComponent(src) + '" download href="/result.html">index</a>').hide().appendTo('body')[0].click();
 
     });
@@ -107,10 +120,21 @@ $(document).ready(function () {
                 $($('#resultFrame').get(0).contentWindow.document.body).append($.parseHTML(data)[13]);*/
 
 
-                console.log(data);
-                console.log(typeof data);
+                /*$($('#resultFrame').get(0).contentWindow.document.body).html(data);
+                upload = true;
+                //console.log($('#resultFrame').get(0).contentWindow.document.body);
 
-                $($('#resultFrame').get(0).contentWindow.document.body).html(data);
+                $($('#resultFrame').get(0).contentWindow.document.body).find('*')
+
+                   $(index).on('dragstart', function () {
+                       element = $(this);
+                       console.log('start');
+                   });
+
+                    */
+
+
+                $('#resultFrame').attr('src', './upload/plik.html');
 
                 //console.log($('#resultFrame').get(0).contentWindow.document);
             },
@@ -131,29 +155,43 @@ $(function () {
     //var optEl = $('<div class="optEl"><button class="btn-opt btn btn-danger btn-delete-item"><i class="fa fa-trash-alt"></i></button><span class="label-element"></span></div>');
 
 
-    var element = $();
-    $('.draggable').on('dragstart', function () {
-        element = $($(this).data('source'));
-    });
 
-    $(".draggable").on('dragend', function (event) {
-        var iframe = $('#resultFrame').get(0).contentWindow.document;
-    });
 
-    $('.draggable').on('dragleave', function (event) {
-    });
 
 
     $('#resultFrame').on('load', function () {
-        var totalElements = 0;
+        console.log('load');
+
+
+        $('.draggable').on('dragstart', function () {
+            element = $($(this).data('source'));
+            console.log('start');
+        });
+
+        $(".draggable").on('dragend', function (event) {
+            var iframe = $('#resultFrame').get(0).contentWindow.document;
+        });
+
+        $('.draggable').on('dragleave', function (event) {
+        });
+
+
 
         $(resultFrame.document.body).on('click', function () {
-            console.log('body');
             $(resultFrame.document.body).find('*').removeClass('active');
             $(resultFrame.document.body).find(optionsElements).remove();
         });
 
 
+        $(resultFrame.document.body).find('.result').find('*').each(function (key, index) {
+            arrayOfId.push(parseInt($(index).attr('id').replace('element_id_', '')));
+        });
+
+        if(Math.max.apply(Math, arrayOfId) != '-Infinity') {
+            totalElements = Math.max.apply(Math, arrayOfId) +1;
+        }
+        console.log(Math.max.apply(Math, arrayOfId) != '-Infinity');
+        console.log(totalElements);
 
         // Obsługa zdarzeń na każdym elemencie w ciele iframeu
         $(resultFrame.document.body).find('*')
@@ -201,12 +239,18 @@ $(function () {
             })
             .on('dragend', function (event) {
                 $(event.target).removeClass('hover');
+            })
+            .on('dragstart', function (event) {
+                event.stopPropagation();
+                element = $(this);
+                console.log($(this));
             });
 
 
         // Obsługa zdarzenia "drop" na elemencie .result w iframie
         $(resultFrame.document).find('.result')
             .on('drop', function (event) {
+                console.log('drop');
                 event.preventDefault();
                 event.stopPropagation();
 
@@ -248,11 +292,13 @@ $(function () {
                         var attId = $(this).prop('tagName');
 
                         $('#edited_element_id').val($(event.target).attr('id'));
-                        getOptions($(this).attr('data-allowedOptions'));
+                        getOptions($(this).attr('data-allowedOptions'), $(event.target).attr('id'));
                         $(optionsElements).removeClass('options-no-active').addClass('options-active');
                         $(this).append(optionsElements).find('.label-element').html(attId);
                         $(resultFrame.document.body).find('*').removeClass('active');
                         $(this).addClass('active');
+
+                        console.log('click');
                     })
                     .on('mouseleave', function (event) {
                         event.preventDefault();
@@ -268,8 +314,6 @@ $(function () {
                     })
                     .on('dragstart', function (event) {
                         event.stopPropagation();
-                        console.log('xxx');
-                        console.log($(this));
                         element = $(this);
                     })
                     .on('mouseout', function (event) {
@@ -283,18 +327,40 @@ $(function () {
 });
 
 
-function getOptions(allowedOptions) {
+function getOptions(allowedOptions, element) {
+    var iframe = $('#resultFrame').get(0).contentWindow.document;
     var _allowedOptions = JSON.parse(allowedOptions);
+
+    var element = $(iframe).find('#'+element);
+    var inputName = $(element).data('input');
+    var inputVal = $(element).data('value')!=undefined ? $(element).data('value') : '';
+
 
     $('#accordion-properties').show();
 
     $.each($('.property'), function () {
         var data_option_id = $(this).attr('data-otpion-id');
+
         $(this).hide();
         if ($.inArray(parseInt(data_option_id), _allowedOptions) != -1) {
-            $(this).show();
-        }
+            if(inputName == undefined || inputVal == undefined) {
+                $(this).show()
+                $(this).find('input').val('');
+                $(this).find('select option:first').prop('selected', true);
+                $('.minicolors-swatch-color').css({'background-color':'unset'});
+            } else {
+                $(this).show();
+                $(this).find('input[name=' + inputName + ']').val(inputVal);
+                if(inputName != "background-color") {
+                    $(this).find('select option[value='+ inputVal +']').prop('selected', true);
+                }
 
+                if(inputName == "background-color") {
+                    $('.minicolors-swatch-color').css({'background-color':inputVal});
+                }
+
+            }
+        }
     });
 }
 
@@ -327,4 +393,10 @@ function getPossition(obj, event) {
 
     return false;
 }
+
+function reload_js(src) {
+    $('script[src="' + src + '"]').remove();
+    $('<script>').attr('src', src).appendTo('head');
+}
+
 
