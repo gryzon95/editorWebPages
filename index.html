@@ -45,12 +45,12 @@
                             <button id="btn-upload-source" type="submit" class="btn btn-success"><i class="fas fa-upload"></i></button>
                         </form>
                         <button class="btn btn-success"><i class="fas fa-code"></i></button>
-                        <button class="btn btn-success"><i class="fas fa-arrows-alt"></i></button>
+                        <button id="btn-preview" class="btn btn-success"><i class="fas fa-arrows-alt"></i></button>
                         <button id="btn-download-source" class="btn btn-success"><i class="fas fa-download"></i></button>
 
                     </div>
 
-                            <iframe id="resultFrame" src="./result.html" style="width: 100%; height: 400px;"></iframe>
+                            <iframe id="resultFrame" src="./result.html" style="width: 100%; height: 800px;"></iframe>
 
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
@@ -66,19 +66,19 @@
                             </div>
                             <div id="property1" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div class="property form-group form-inline" data-otpion-id="1">
+                                    <div class="property form-group form-inline" data-option-id="1">
                                         <label for="text">Tekst:</label>
                                         <input class="form-control" type="text" name="text"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="2">
+                                    <div class="property form-group form-inline" data-option-id="2">
                                         <label for="text">Kolor czcionki:</label>
                                         <input class="form-control" type="text" name="color"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="3">
+                                    <div class="property form-group form-inline" data-option-id="3">
                                         <label for="text">Pozycja tekstu::</label>
                                         <input class="form-control" type="text" name="text-align"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="4">
+                                    <div class="property form-group form-inline" data-option-id="4">
                                         <label for="text">Rodzaj czcionki:</label>
                                         <input class="form-control" type="text" name="font-family"/>
                                     </div>
@@ -95,49 +95,61 @@
                             </div>
                             <div id="property2" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div class="property form-group form-inline" data-otpion-id="5">
+                                    <div class="property form-group form-inline" data-option-id="5">
                                         <label for="font-size">Margines górny:</label>
                                         <input class="form-control" type="text" name="margin-top"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="6">
+                                    <div class="property form-group form-inline" data-option-id="6">
                                         <label for="font-size">Margines prawy:</label>
                                         <input class="form-control" type="text" name="margin-right"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="7">
+                                    <div class="property form-group form-inline" data-option-id="7">
                                         <label for="font-size">Margines dolny:</label>
                                         <input class="form-control" type="text" name="margin-bottom"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="8">
+                                    <div class="property form-group form-inline" data-option-id="8">
                                         <label for="font-size">Margines lewy:</label>
                                         <input class="form-control" type="text" name="margin-left"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="9">
+                                    <div class="property form-group form-inline" data-option-id="9">
                                         <label for="font-size">Padding górny:</label>
                                         <input class="form-control" type="text" name="padding-top"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="10">
+                                    <div class="property form-group form-inline" data-option-id="10">
                                         <label for="font-size">Padding prawy:</label>
                                         <input class="form-control" type="text" name="padding-right"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="11">
+                                    <div class="property form-group form-inline" data-option-id="11">
                                         <label for="font-size">Padding dolny:</label>
                                         <input class="form-control" type="text" name="padding-bottom"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="12">
+                                    <div class="property form-group form-inline" data-option-id="12">
                                         <label for="font-size">Padding lewy:</label>
                                         <input class="form-control" type="text" name="padding-left"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="13">
+                                    <div class="property form-group form-inline" data-option-id="13">
                                         <label for="font-size">Kolor tła:</label>
                                         <input class="form-control" type="text" name="background-color"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="14">
+                                    <div class="property form-group form-inline" data-option-id="14">
                                         <label for="font-size">Obramowanie:</label>
                                         <input class="form-control" type="text" name="border"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="15">
+                                    <div class="property form-group form-inline" data-option-id="15">
                                         <label for="font-size">Obrazek tła:</label>
-                                        <input class="form-control" type="text" name="border"/>
+                                        <input class="form-control" type="text" name="background-image"/>
+                                    </div>
+                                    <div class="property form-group form-inline" data-option-id="23">
+                                        <label for="font-size">Pozycja tła:</label>
+                                        <input class="form-control" type="text" name="background-position"/>
+                                    </div>
+                                    <div class="property form-group form-inline" data-option-id="24">
+                                        <label for="font-size">Rozmiar tła:</label>
+                                        <input class="form-control" type="text" name="background-size"/>
+                                    </div>
+                                    <div class="property form-group form-inline" data-option-id="25">
+                                        <label for="font-size">Powtarzaj tło:</label>
+                                        <input class="form-control" type="text" name="background-repeat"/>
                                     </div>
                                 </div>
                             </div>
@@ -152,15 +164,15 @@
                             </div>
                             <div id="property3" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div class="property form-group form-inline" data-otpion-id="16">
+                                    <div class="property form-group form-inline" data-option-id="16">
                                         <label for="text">Wysokość:</label>
                                         <input class="form-control" type="text" name="height"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="17">
+                                    <div class="property form-group form-inline" data-option-id="17">
                                         <label for="text">Szerokość:</label>
                                         <input class="form-control" type="text" name="width"/>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                    <div class="property form-group form-inline" data-option-id="18">
                                         <label for="text">Ilość kolumn na telefonach:</label>
                                         <select name="small-column">
                                             <option value="col-sm-1">1</option>
@@ -177,7 +189,7 @@
                                             <option value="col-sm-12">12</option>
                                         </select>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                    <div class="property form-group form-inline" data-option-id="18">
                                         <label for="text">Ilość kolumn na tabletach/laptopach:</label>
                                         <select name="medium-column">
                                             <option value="col-md-1">1</option>
@@ -194,7 +206,7 @@
                                             <option value="col-md-12">12</option>
                                         </select>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                    <div class="property form-group form-inline" data-option-id="18">
                                         <label for="text">Ilość kolumn na urządzeniach średnich ekranach:</label>
                                         <select name="large-column">
                                             <option value="col-lg-1">1</option>
@@ -211,7 +223,7 @@
                                             <option value="col-lg-12">12</option>
                                         </select>
                                     </div>
-                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                    <div class="property form-group form-inline" data-option-id="18">
                                         <label for="text">Ilość kolumn na dużych ekranach:</label>
                                         <select name="xlarge-column">
                                             <option value="col-xl-1">1</option>
@@ -228,7 +240,14 @@
                                             <option value="col-xl-12">12</option>
                                         </select>
                                     </div>
-
+                                    <div class="property form-group form-inline" data-option-id="19">
+                                        <label for="font-size">Szerokość</label>
+                                        <input class="form-control" type="text" name="width"/>
+                                    </div>
+                                    <div class="property form-group form-inline" data-option-id="20">
+                                        <label for="font-size">Wysokość</label>
+                                        <input class="form-control" type="text" name="height"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -242,9 +261,13 @@
                             </div>
                             <div id="property4" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div class="property form-group form-inline" data-otpion-id="18">
+                                    <div class="property form-group form-inline" data-option-id="21">
                                         <label for="text">Odnośnik:</label>
                                         <input class="form-control" type="text" name="href">
+                                    </div>
+                                    <div class="property form-group form-inline" data-option-id="22">
+                                        <label for="text">Źródło obrazka:</label>
+                                        <input class="form-control" type="text" name="src">
                                     </div>
                                 </div>
                             </div>
@@ -255,6 +278,17 @@
             </div>
         </div>
 
+<div id="preview">
+    <div id="devices-options">
+        <button id="desktop-view" type="button"><i class="fas fa-desktop"></i></button>
+        <button id="tablet-view" type="button"><i class="fas fa-tablet-alt"></i></button>
+        <button id="mobile-view" type="button"><i class="fas fa-mobile-alt"></i></button>
+        <i id="close-preview" class="fas fa-times"></i>
+    </div>
+    <div id="preview-content">
+        <iframe id="previewFrame" src="./result.html" style="width: 100%; height: 100%;"></iframe>
+    </div>
+</div>
 
         <script src="js/jquery/jquery-3.3.1.js"></script>
         <script src="js/jquery/jquery-rotate.min.js"></script>

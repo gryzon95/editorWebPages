@@ -6,14 +6,14 @@ var elements = {
                 'displayName':'Container',
                 'icon': '<i class="far fa-square"></i>',
                 'name':'container',
-                'source':'<div draggable="true" class="container cont-black draggable" data-allowedOptions="[3,13]"></div>',
+                'source':'<div draggable="true" class="container cont-black draggable" data-allowedOptions="[3,13,15,23,24,25,19,20]"></div>',
                 'allowedOptions' : []
             },
             {
                 'displayName':'Container Fluid',
                 'icon': '<i class="far fa-square"></i>',
                 'name':'container-fluid',
-                'source':'<div draggable="true" class="container-fluid draggable" data-allowedOptions="[3,13]"></div>',
+                'source':'<div draggable="true" class="container-fluid draggable" data-allowedOptions="[3,13,15,23,24,25,19,20]"></div>',
                 'allowedOptions' : []
             },
             {
@@ -34,7 +34,7 @@ var elements = {
                 'displayName':'Column',
                 'icon':'<i class="fas fa-th"></i>',
                 'name':'Column',
-                'source':'<div draggable="true" class="col-sm-3 draggable" data-allowedOptions="[3,13,18]"></div>',
+                'source':'<div draggable="true" class="col-sm-3 draggable" data-allowedOptions="[3,13,18,15,23,24,25,19,20]"></div>',
                 'allowedOptions': []
             }
 
@@ -71,14 +71,14 @@ var elements = {
         'items': [
             {
                 'displayName' : 'Paragraf',
-                'icon':'',
+                'icon':'<i class="fas fa-paragraph"></i>',
                 'name':'p',
                 'source':'<p draggable="true" class="draggable" data-allowedOptions="[1,2,3,4]">Lorem ipsum, Lorem ipsum, Lorem ipsum,</p>',
                 'allowedOptions': []
             },
             {
                 'displayName' : 'Span',
-                'icon':'',
+                'icon':'<i class="fas fa-font"></i>',
                 'name':'span',
                 'source':'<span draggable="true" class="draggable" data-allowedOptions="[1,2,3,4]">Lorem ipsum, Lorem ipsum, Lorem ipsum,</span>',
                 'allowedOptions': []
@@ -90,7 +90,7 @@ var elements = {
         'items': [
             {
                 'displayName' : 'Hiperłącze',
-                'icon':'',
+                'icon':'<i class="fas fa-link"></i>',
                 'name':'h',
                 'source':'<a href="" draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,18]">Lorem ipsum, Lorem ipsum, Lorem ipsum,</a>',
                 'allowedOptions': []
@@ -102,23 +102,35 @@ var elements = {
         'items' : [
             {
                 'displayName' : 'Lista uporządkowana',
-                'icon': '',
+                'icon': '<i class="fas fa-list-ol"></i>',
                 'name':'ol',
                 'source': '<ol draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8]"></ol>',
                 'allowedOptions':[]
             },
             {
                 'displayName' : 'Lista nie uporządkowana',
-                'icon': '',
+                'icon': '<i class="fas fa-list-ul"></i>',
                 'name':'ul',
                 'source': '<ul draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8]"></ul>',
                 'allowedOptions':[]
             },
             {
                 'displayName' : 'Element listy',
-                'icon': '',
+                'icon': '<i class="fas fa-list"></i>',
                 'name':'li',
                 'source': '<li draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8,9,10,11,12]"></li>',
+                'allowedOptions':[]
+            }
+        ]
+    },
+    'images':{
+        'displayName' : 'Obrazki',
+        'items' : [
+            {
+                'displayName' : 'Obrazek',
+                'icon' : '<i class="far fa-images"></i>',
+                'name' : 'img',
+                'source' : '<img draggable="true" class="draggable" data-allowedOptions="[19,20,22]" src="https://via.placeholder.com/150">',
                 'allowedOptions':[]
             }
         ]

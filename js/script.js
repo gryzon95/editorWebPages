@@ -45,6 +45,12 @@ $(document).ready(function () {
         if(changedPropertyName == "href") {
             $(iframe).find(edited_element_id).prop('href', $(this).val());
         }
+        if (changedPropertyName == "src") {
+            $(iframe).find(edited_element_id).prop('src', $(this).val());
+        }
+        if (changedPropertyName == "background-image") {
+            $(iframe).find(edited_element_id).css('background-image', 'url(' + $(this).val() + ')');
+        }
 
 
         $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
@@ -95,6 +101,33 @@ $(document).ready(function () {
         $('<a href="data:text/html,' + encodeURIComponent(src) + '" download href="/result.html">index</a>').hide().appendTo('body')[0].click();
 
     });
+
+    // Pokazanie okna z podglądem
+    $('#btn-preview').on('click', function () {
+        var bodySrc = $($('#resultFrame').get(0).contentWindow.document.body).html();
+
+        $($('#previewFrame').get(0).contentWindow.document.body).html(bodySrc);
+        $('#preview').show();
+    });
+
+
+    // Okno z podglądem akcje
+    $('#desktop-view').on('click', function () {
+        $('#preview-content').width(1280);
+    });
+
+    $('#tablet-view').on('click', function () {
+        $('#preview-content').width(768);
+    });
+
+    $('#mobile-view').on('click', function () {
+        $('#preview-content').width(425);
+    });
+
+    $('#close-preview').on('click', function () {
+        $('#preview').hide();
+    });
+
 
     // Upload wygenerowanego pliku
     $('#btn-upload-source').on('click', function (e) {
@@ -304,14 +337,16 @@ function getOptions(allowedOptions, element) {
     var inputVal = $(element).data('value')!=undefined ? $(element).data('value') : '';
 
 
+
     $('#accordion-properties').show();
 
     $.each($('.property'), function () {
-        var data_option_id = $(this).attr('data-otpion-id');
+        var data_option_id = $(this).attr('data-option-id');
 
         $(this).hide();
         if ($.inArray(parseInt(data_option_id), _allowedOptions) != -1) {
             if(inputName == undefined || inputVal == undefined) {
+                console.log('show');
                 $(this).show()
                 $(this).find('input').val('');
                 $(this).find('select option:first').prop('selected', true);

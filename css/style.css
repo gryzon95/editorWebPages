@@ -242,3 +242,21 @@ header h1 {
 .active {
     border: 1px solid rgba(0,255,0,.4) !important;
 }
+
+
+#preview {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.8);
+}
+
+#preview-content {
+    display: block;
+    margin: 0 auto;
+    height: 600px;
+}
