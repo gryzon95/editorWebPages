@@ -354,7 +354,9 @@ function getOptions(allowedOptions, element) {
             } else {
                 $(this).show();
                 $(this).find('input[name=' + inputName + ']').val(inputVal);
-                if(inputName != "background-color") {
+
+                console.log(inputName);
+                if(inputName.includes('column')) {
                     $(this).find('select option[value='+ inputVal +']').prop('selected', true);
                 }
 
