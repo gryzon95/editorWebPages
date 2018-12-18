@@ -1,4 +1,11 @@
 /* RESET VALUE */
+tbody {
+    pointer-events: all;
+}
+tr {
+    pointer-events: all;
+}
+
 p,a,ul {
     margin: 0;
     padding: 0;
@@ -192,14 +199,6 @@ header h1 {
     padding: 5px;
 }
 
-.col-md-4 {
-    height: 100px;
-}
-
-.row {
-    min-height: 50px;
-}
-
 .arr {
     position: absolute;
     z-index: 9999;
@@ -239,10 +238,13 @@ header h1 {
     background-color: rgba(0,255,0,.4) !important;
 }
 
+.forbidden {
+    background-color: rgba(255,0,0,.4) !important;
+}
+
 .active {
     border: 1px solid rgba(0,255,0,.4) !important;
 }
-
 
 #preview {
     display: none;
@@ -259,4 +261,45 @@ header h1 {
     display: block;
     margin: 0 auto;
     height: 600px;
+
 }
+
+#devices-options {
+    color: #fff;
+}
+
+#width-preview,
+#height-preview {
+    color: #000;
+}
+
+
+.result .draggable.col-md-4 {
+    height: 100px;
+}
+
+.result .draggable.row {
+    min-height: 50px;
+}
+
+.result ul.draggable,
+.result ol.draggable,
+.result li.draggable {
+    min-height: 10px;
+}
+
+.result tr.draggable {
+    height: 30px;
+}
+
+.result td.draggable {
+    min-height: 10px;
+    min-width: 50px;
+}
+.result table.draggable {
+    width: 100px;
+}
+/*.result table.draggable:before {*/
+    /*content: "Dodaj wiersze i kolumny";*/
+    /*height: 20px;*/
+/*}*/

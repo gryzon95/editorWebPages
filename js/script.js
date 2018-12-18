@@ -64,31 +64,39 @@ $(document).ready(function () {
         var edited_element_id = '#' + $('#edited_element_id').val();
         var changedPropertyName = $(this).attr('name');
 
-        if(changedPropertyName == "small-column") {
-            $(iframe).find(edited_element_id).alterClass('col-sm-*', $(this).val());
+        if(changedPropertyName.indexOf('column') >= 0) {
+            if(changedPropertyName == "small-column") {
+                $(iframe).find(edited_element_id).alterClass('col-sm-*', $(this).val());
+            }
+            if(changedPropertyName == "medium-column") {
+                $(iframe).find(edited_element_id).alterClass('col-md-*', $(this).val());
+            }
+            if(changedPropertyName == "large-column") {
+                $(iframe).find(edited_element_id).alterClass('col-lg-*', $(this).val());
+            }
+            if(changedPropertyName == "xlarge-column") {
+                $(iframe).find(edited_element_id).alterClass('col-xl-*', $(this).val());
+            }
+        } else {
+            $(iframe).find(edited_element_id).css(changedPropertyName, $(this).val());
         }
-        if(changedPropertyName == "medium-column") {
-            $(iframe).find(edited_element_id).alterClass('col-md-*', $(this).val());
-        }
-        if(changedPropertyName == "large-column") {
-            $(iframe).find(edited_element_id).alterClass('col-lg-*', $(this).val());
-        }
-        if(changedPropertyName == "xlarge-column") {
-            $(iframe).find(edited_element_id).alterClass('col-xl-*', $(this).val());
-        }
+
+
 
         $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
         $(iframe).find(edited_element_id).data('value', $(this).val());
     });
 
-
-
-    $('input[name=background-color]').minicolors({
+    $('input[data-type="color-bg"]').minicolors({
         format: 'rgb',
         opacity: true,
         theme: 'bootstrap',
     });
 
+    $('input[data-type="color"]').minicolors({
+       format: 'rgb',
+        theme: 'bootstrap',
+    });
 
     // Eksport wygenerowanego pliku
     $('#btn-download-source').on('click', function () {
@@ -128,6 +136,14 @@ $(document).ready(function () {
         $('#preview').hide();
     });
 
+    $('#width-preview').on('input', function () {
+       $('#preview-content').width($(this).val());
+    });
+
+    $('#height-preview').on('input', function () {
+        $('#preview-content').height($(this).val());
+    });
+
 
     // Upload wygenerowanego pliku
     $('#btn-upload-source').on('click', function (e) {
@@ -146,7 +162,7 @@ $(document).ready(function () {
             cache: false,
             timeout: 600000,
             success: function (data) {
-                $('#resultFrame').attr('src', './upload/plik.html');
+                $('#resultFrame').attr('src', './'+data);
             },
             error: function (e) {
                 console.log("ERROR : ", e);
@@ -169,7 +185,6 @@ $(function () {
 
         $('.draggable').on('dragstart', function () {
             element = $($(this).data('source'));
-            console.log('start');
         });
 
         $(".draggable").on('dragend', function (event) {
@@ -198,11 +213,25 @@ $(function () {
             .on('dragenter', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
+                console.log(event.target);
             })
             .on('dragover', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
-                $(event.target).addClass('hover');
+
+                // console.log(event.target);
+
+                // console.log(element.attr('data-forbiddenElements').split(','));
+                //console.log(JSON.parse(element.attr('data-forbiddenElements').toString()));
+
+                // $(event.target).addClass('hover');
+
+
+                if(isAllowed(element, event.target)){
+                    $(event.target).addClass('hover');
+                } else {
+                    $(event.target).addClass('forbidden');
+                }
 
                 if(!$(event.target).hasClass('arr')) {
                     if (getPossition(this, event) == 'top') {
@@ -235,31 +264,44 @@ $(function () {
                 }
             })
             .on('dragleave', function (event) {
-                $(event.target).removeClass('hover');
+                $(event.target).removeClass('hover forbidden');
                 $(event.target).find('[class*="fa-angle-double-"]').remove();
             })
             .on('dragend', function (event) {
-                $(event.target).removeClass('hover');
+                $(event.target).removeClass('hover forbidden');
             })
             .on('dragstart', function (event) {
                 event.stopPropagation();
                 element = $(this);
                 console.log($(this));
+            })
+            .on('mouseover', function (event) {
+                event.stopPropagation();
+                $(this).addClass('hover');
+            })
+            .on('mouseout', function (event) {
+                $(this).removeClass('hover forbidden');
+            })
+            .on('click', function (event) {
+                console.log('ckick');
             });
 
 
         // Obsługa zdarzenia "drop" na elemencie .result w iframie
         $(resultFrame.document).find('.result')
             .on('drop', function (event) {
-                console.log('drop');
                 event.preventDefault();
-                event.stopPropagation();
+                // event.stopPropagation();
 
                 var target = event.target;
 
+                console.log(event.currentTarget);
+                if(!isAllowed(element, target)) {
+                    return false;
+                }
 
                 // Określanie miejsce w które ma zostać dodany element na podstawie pozycji kursora
-                $(target).removeClass('hover');
+                $(target).removeClass('hover forbidden');
                 if (!$(target).hasClass('arr')) {
                     if (getPossition(this, event) == 'top' || getPossition(this, event) == 'left') {
                         if (element.hasClass('moveable')) {
@@ -290,6 +332,7 @@ $(function () {
                     .on('click', function (event) {
                         event.preventDefault();
                         event.stopPropagation();
+                        console.log(event.currentTarget);
                         var attId = $(this).prop('tagName');
 
                         $('#edited_element_id').val($(event.target).attr('id'));
@@ -309,6 +352,7 @@ $(function () {
                     .on('mouseover', function (event) {
                         event.preventDefault();
                         event.stopPropagation();
+
                         var attId = $(this).prop('tagName');
                         //$(this).append(optionsElements).find('.label-element').html(attId);
                         $(this).addClass('hover');
@@ -318,7 +362,7 @@ $(function () {
                         element = $(this);
                     })
                     .on('mouseout', function (event) {
-                        $(this).removeClass('hover');
+                        $(this).removeClass('hover forbidden');
                     });
 
                 $(this).find('.arr').remove();
@@ -355,7 +399,6 @@ function getOptions(allowedOptions, element) {
                 $(this).show();
                 $(this).find('input[name=' + inputName + ']').val(inputVal);
 
-                console.log(inputName);
                 if(inputName.includes('column')) {
                     $(this).find('select option[value='+ inputVal +']').prop('selected', true);
                 }
@@ -402,6 +445,15 @@ function getPossition(obj, event) {
 function reload_js(src) {
     $('script[src="' + src + '"]').remove();
     $('<script>').attr('src', src).appendTo('head');
+}
+
+function isAllowed(element, target) {
+
+    if($.inArray(element.prop('tagName').toLowerCase(), $(target).attr('data-forbiddenElements').split(',')) != -1) {
+        return false;
+    }
+
+    return true;
 }
 
 
