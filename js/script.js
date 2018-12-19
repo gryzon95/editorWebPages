@@ -295,7 +295,7 @@ $(function () {
 
                 var target = event.target;
 
-                console.log(event.currentTarget);
+                console.log(isAllowed(element, target));
                 if(!isAllowed(element, target)) {
                     return false;
                 }
@@ -364,6 +364,10 @@ $(function () {
                     .on('mouseout', function (event) {
                         $(this).removeClass('hover forbidden');
                     });
+					
+					$('tr').on('click', function(event){
+						console.log('click on table!');
+					});
 
                 $(this).find('.arr').remove();
                 totalElements += 1;
@@ -448,10 +452,11 @@ function reload_js(src) {
 }
 
 function isAllowed(element, target) {
-
-    if($.inArray(element.prop('tagName').toLowerCase(), $(target).attr('data-forbiddenElements').split(',')) != -1) {
-        return false;
-    }
+	if($(target).attr('data-forbiddenElements') != undefined) {
+		if($.inArray(element.prop('tagName').toLowerCase(), $(target).attr('data-forbiddenElements').split(',')) != -1) {
+			return false;
+		}
+	}
 
     return true;
 }

@@ -142,7 +142,7 @@ var elements = {
                 'displayName': 'Tabela',
                 'icon': '',
                 'name': 'table',
-                'source': '<table draggable="true" class="draggable" data-allowedOptions="[]" data-forbiddenElements=""><tr draggable="true" class="draggable"></tr></table>'
+                'source': '<table draggable="true" class="draggable" data-allowedOptions="[]" data-forbiddenElements=""></table>'
             },
             {
                 'displayName': 'Wiersz tabeli',
