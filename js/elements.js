@@ -92,7 +92,7 @@ var elements = {
                 'displayName' : 'Hiperłącze',
                 'icon':'<i class="fas fa-link"></i>',
                 'name':'h',
-                'source':'<a href="" draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,18]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</a>',
+                'source':'<a href="" draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,18,21]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</a>',
                 'allowedOptions': []
             }
         ]
