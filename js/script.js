@@ -178,12 +178,11 @@ $(document).ready(function () {
 $(function () {
     var resultFrame = $('#resultFrame').get(0).contentWindow;
     var optionsElements = $('<div class="options-elements options-no-active" data-active="false"><button class="btn-opt btn btn-danger btn-delete-item"><i class="fa fa-trash-alt"></i></button><span class="label-element"></span></div>');
-    //var optEl = $('<div class="optEl"><button class="btn-opt btn btn-danger btn-delete-item"><i class="fa fa-trash-alt"></i></button><span class="label-element"></span></div>');
-
 
     $('#resultFrame').on('load', function () {
 
-        $('.draggable').on('dragstart', function () {
+        $('.draggable').on('dragstart', function (event) {
+            event.originalEvent.dataTransfer.setData('text/plain', 'anything');
             element = $($(this).data('source'));
         });
 
@@ -213,7 +212,6 @@ $(function () {
             .on('dragenter', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
-                console.log(event.target);
             })
             .on('dragover', function (event) {
                 event.preventDefault();
@@ -272,6 +270,8 @@ $(function () {
             })
             .on('dragstart', function (event) {
                 event.stopPropagation();
+                event.originalEvent.dataTransfer.setData('text/plain', 'anything');
+
                 element = $(this);
                 console.log($(this));
             })
@@ -283,6 +283,7 @@ $(function () {
                 $(this).removeClass('hover forbidden');
             })
             .on('click', function (event) {
+                event.stopPropagation();
                 console.log('ckick');
             });
 
@@ -291,7 +292,7 @@ $(function () {
         $(resultFrame.document).find('.result')
             .on('drop', function (event) {
                 event.preventDefault();
-                // event.stopPropagation();
+                 event.stopPropagation();
 
                 var target = event.target;
 
@@ -325,14 +326,12 @@ $(function () {
                     }
                 }
 
-                //element.addClass('moveable').attr('id', 'element_id_' + totalElements).appendTo($(target));
-
                 // Akcje wykonywane na dodanym już elemencie
                 element
                     .on('click', function (event) {
                         event.preventDefault();
                         event.stopPropagation();
-                        console.log(event.currentTarget);
+
                         var attId = $(this).prop('tagName');
 
                         $('#edited_element_id').val($(event.target).attr('id'));
@@ -343,6 +342,9 @@ $(function () {
                         $(this).addClass('active');
 
                         console.log('click');
+                    })
+                    .on('click', '.btn-delete-item', function (event) {
+                        $(this).parent().parent().remove();
                     })
                     .on('mouseleave', function (event) {
                         event.preventDefault();
@@ -359,20 +361,21 @@ $(function () {
                     })
                     .on('dragstart', function (event) {
                         event.stopPropagation();
+                        event.originalEvent.dataTransfer.setData('text/plain', 'anything');
                         element = $(this);
                     })
                     .on('mouseout', function (event) {
                         $(this).removeClass('hover forbidden');
                     });
-					
-					$('tr').on('click', function(event){
-						console.log('click on table!');
-					});
 
                 $(this).find('.arr').remove();
                 totalElements += 1;
         });
     });
+
+
+
+
 });
 
 
@@ -460,5 +463,7 @@ function isAllowed(element, target) {
 
     return true;
 }
+
+
 
 

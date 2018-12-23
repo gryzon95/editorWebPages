@@ -1,7 +1,5 @@
 /* RESET VALUE */
-tbody {
-    pointer-events: all;
-}
+
 tr {
     display:block;
 }
@@ -274,32 +272,32 @@ header h1 {
 }
 
 
-.result .draggable.col-md-4 {
+#result-body .draggable.col-md-4 {
     height: 100px;
 }
 
-.result .draggable.row {
+#result-body .draggable.row {
     min-height: 50px;
 }
 
-.result ul.draggable,
-.result ol.draggable,
-.result li.draggable {
+#result-body ul.draggable,
+#result-body ol.draggable,
+#result-body li.draggable {
     min-height: 10px;
 }
 
-.result tr.draggable {
+#result-body tr.draggable {
     height: 30px;
 }
 
-.result td.draggable {
+#result-body td.draggable {
     height: 30px;
     width: 50px;
 }
-.result table.draggable {
+#result-body table.draggable {
     width: 100px;
 }
-.result table.draggable:before {
+#result-body table.draggable:before {
     content: "Dodaj wiersze i kolumny";
     height: 20px;
 }
