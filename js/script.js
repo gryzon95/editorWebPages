@@ -55,16 +55,39 @@ $(document).ready(function () {
 
         $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
         $(iframe).find(edited_element_id).data('value', $(this).val());
+        $(iframe).find(edited_element_id).data('input-type', 'input');
 
     });
 
+    $('.property input').on('click', function () {
+        var iframe = $('#resultFrame').get(0).contentWindow.document;
+
+        var edited_element_id = '#' + $('#edited_element_id').val();
+        var changedPropertyName = $(this).attr('name');
+        var changedPropertyValue = $(this).val();
+
+        if($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            $(iframe).find(edited_element_id).css(changedPropertyName, 'unset');
+        } else {
+            $(this).addClass('active');
+            $(iframe).find(edited_element_id).css(changedPropertyName, changedPropertyValue);
+        }
+
+
+
+        $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
+        $(iframe).find(edited_element_id).data('value', $(this).val());
+        $(iframe).find(edited_element_id).data('input-type', 'input');
+    });
+
     $('.property select').on('change', function () {
-       var iframe =  $('#resultFrame').get(0).contentWindow.document;
+        var iframe =  $('#resultFrame').get(0).contentWindow.document;
 
         var edited_element_id = '#' + $('#edited_element_id').val();
         var changedPropertyName = $(this).attr('name');
 
-        if(changedPropertyName.indexOf('column') >= 0) {
+        if(changedPropertyName.includes('column')) {
             if(changedPropertyName == "small-column") {
                 $(iframe).find(edited_element_id).alterClass('col-sm-*', $(this).val());
             }
@@ -85,6 +108,7 @@ $(document).ready(function () {
 
         $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
         $(iframe).find(edited_element_id).data('value', $(this).val());
+        $(iframe).find(edited_element_id).data('input-type', 'select');
     });
 
     $('input[data-type="color-bg"]').minicolors({
@@ -100,12 +124,16 @@ $(document).ready(function () {
 
     // Eksport wygenerowanego pliku
     $('#btn-download-source').on('click', function () {
+
+        $($('#resultFrame').get(0).contentWindow.document.body).find('.options-elements').remove();
+        $($('#resultFrame').get(0).contentWindow.document.body).find('*').removeClass('active');
+
         var headSrc = $($('#resultFrame').get(0).contentWindow.document.head);
         var bodySrc = $($('#resultFrame').get(0).contentWindow.document.body).html();
 
         headSrc.find('style').remove();
 
-        var src = '<html><head>' + headSrc.html() + '</head><body>' + bodySrc + '</body></html>';
+        var src = '<html><head>' + headSrc.html() + '</head><body id="result-body">' + bodySrc + '</body></html>';
         $('<a href="data:text/html,' + encodeURIComponent(src) + '" download href="/result.html">index</a>').hide().appendTo('body')[0].click();
 
     });
@@ -282,9 +310,21 @@ $(function () {
             .on('mouseout', function (event) {
                 $(this).removeClass('hover forbidden');
             })
+            .on('click', '.btn-delete-item', function (event) {
+                $(this).parent().parent().remove();
+            })
             .on('click', function (event) {
+                event.preventDefault();
                 event.stopPropagation();
-                console.log('ckick');
+
+                var attId = $(this).prop('tagName');
+
+                $('#edited_element_id').val($(event.target).attr('id'));
+                getOptions($(this).attr('data-allowedOptions'), $(event.target).attr('id'));
+                $(optionsElements).removeClass('options-no-active').addClass('options-active');
+                $(this).append(optionsElements).find('.label-element').html(attId);
+                $(resultFrame.document.body).find('*').removeClass('active');
+                $(this).addClass('active');
             });
 
 
@@ -341,7 +381,7 @@ $(function () {
                         $(resultFrame.document.body).find('*').removeClass('active');
                         $(this).addClass('active');
 
-                        console.log('click');
+
                     })
                     .on('click', '.btn-delete-item', function (event) {
                         $(this).parent().parent().remove();
@@ -386,7 +426,8 @@ function getOptions(allowedOptions, element) {
     var element = $(iframe).find('#'+element);
     var inputName = $(element).data('input');
     var inputVal = $(element).data('value')!=undefined ? $(element).data('value') : '';
-
+    var inputType = $(element).data('input-type');
+    var elementStyle = $(element).prop('style');
 
 
     $('#accordion-properties').show();
@@ -397,16 +438,22 @@ function getOptions(allowedOptions, element) {
         $(this).hide();
         if ($.inArray(parseInt(data_option_id), _allowedOptions) != -1) {
             if(inputName == undefined || inputVal == undefined) {
-                console.log('show');
                 $(this).show()
-                $(this).find('input').val('');
+
+                $(this).find('input[data-default-value!="true"]').val('');
                 $(this).find('select option:first').prop('selected', true);
                 $('.minicolors-swatch-color').css({'background-color':'unset'});
+                $('#accordion-properties').find("[name=text]").val($(element).text());
+                $.each(elementStyle, function (key, index) {
+                    $('#accordion-properties').find("[name="+ index + "]").val(elementStyle[index]);
+                });
+
             } else {
                 $(this).show();
+
                 $(this).find('input[name=' + inputName + ']').val(inputVal);
 
-                if(inputName.includes('column')) {
+                if(inputType == "select") {
                     $(this).find('select option[value='+ inputVal +']').prop('selected', true);
                 }
 

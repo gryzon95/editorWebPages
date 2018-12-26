@@ -73,14 +73,14 @@ var elements = {
                 'displayName' : 'Paragraf',
                 'icon':'<i class="fas fa-paragraph"></i>',
                 'name':'p',
-                'source':'<p draggable="true" class="draggable" data-allowedOptions="[1,2,3,4]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</p>',
+                'source':'<p draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,26,27,28,29,30,19,20,31]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</p>',
                 'allowedOptions': []
             },
             {
                 'displayName' : 'Zwykły tekst',
                 'icon':'<i class="fas fa-font"></i>',
                 'name':'span',
-                'source':'<span draggable="true" class="draggable" data-allowedOptions="[1,2,3,4]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</span>',
+                'source':'<span draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,26,27,28,29,30,19,20,31]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</span>',
                 'allowedOptions': []
             }
         ]
