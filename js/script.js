@@ -31,7 +31,7 @@ $(document).ready(function () {
     });
 
     // Obsługa wartości właściwości danych elementów
-    $('.property input').on('input', function () {
+    $('.property input, textarea').on('input', function () {
         var iframe = $('#resultFrame').get(0).contentWindow.document;
 
         var edited_element_id = '#' + $('#edited_element_id').val();
@@ -52,6 +52,14 @@ $(document).ready(function () {
             $(iframe).find(edited_element_id).css('background-image', 'url(' + $(this).val() + ')');
         }
 
+        //Synchronizacja inputa z textareą dla ustawienia tekstu
+        if($(this).prop('tagName').toLowerCase() == "textarea") {
+            $('input[name="text"]').val($(this).val());
+        }
+        if($(this).prop('tagName').toLowerCase() == "input") {
+            $('textarea[name="text"]').val($(this).val());
+        }
+
 
         $(iframe).find(edited_element_id).data('input', $(this).attr('name'));
         $(iframe).find(edited_element_id).data('value', $(this).val());
@@ -70,7 +78,10 @@ $(document).ready(function () {
             $(this).removeClass('active');
             $(iframe).find(edited_element_id).css(changedPropertyName, 'unset');
         } else {
-            $(this).addClass('active');
+            if($(this).attr('type') == 'button') {
+                $(this).addClass('active');
+            }
+
             $(iframe).find(edited_element_id).css(changedPropertyName, changedPropertyValue);
         }
 
@@ -443,13 +454,14 @@ function getOptions(allowedOptions, element) {
                 $(this).find('input[data-default-value!="true"]').val('');
                 $(this).find('select option:first').prop('selected', true);
                 $('.minicolors-swatch-color').css({'background-color':'unset'});
-                $('#accordion-properties').find("[name=text]").val($(element).text());
+                $('body').find("[name=text]").val($(element).text());
                 $.each(elementStyle, function (key, index) {
                     $('#accordion-properties').find("[name="+ index + "]").val(elementStyle[index]);
                 });
 
             } else {
                 $(this).show();
+
 
                 $(this).find('input[name=' + inputName + ']').val(inputVal);
 

@@ -15,6 +15,26 @@
 </head>
 
 <body>
+
+<div id="textModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Wprowadź swój tekst:</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="5" name="text"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Zapisz</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 <header>
     <div class="container-fluid">
         <div class="row">
@@ -71,6 +91,7 @@
                             <div class="property form-group form-inline" data-option-id="1">
                                 <label for="text">Tekst:</label>
                                 <input class="form-control" type="text" name="text"/>
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#textModal">Więcej tekstu <i class="fas fa-expand"></i></button>
                             </div>
                             <div class="property form-group form-inline" data-option-id="2">
                                 <label for="text">Kolor czcionki:</label>
