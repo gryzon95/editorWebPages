@@ -166,8 +166,17 @@ header h1 {
     color: #fff;
 }
 
+.property input[type="checkbox"] {
+    width: initial !important;
+}
+
 .property input.active {
     opacity: .7;
+}
+
+
+.advanced-option {
+    display: none;
 }
 
 .panel-foot{
@@ -178,6 +187,8 @@ header h1 {
 .moveable {
     position: relative;
 }
+
+
 .options-elements,
 .optEl{
     position: absolute;
@@ -266,6 +277,11 @@ header h1 {
 
 }
 
+#close-preview {
+    background-color: transparent;
+    border: none;
+}
+
 #devices-options {
     color: #fff;
 }
@@ -307,6 +323,6 @@ header h1 {
     min-width: 300px;
 }
 #result-body table.draggable:before {
-    content: "Dodaj wiersze i kolumny";
-    height: 20px;
+    content: " ";
+    padding: 30px;
 }

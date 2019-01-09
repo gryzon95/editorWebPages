@@ -24,6 +24,7 @@ $(document).ready(function () {
 
     // Animamcja ikony ustawień
     $('.expand-item, .expand-property').on('click', function () {
+        console.log($(this).parent().parent().parent().parent());
         $(this).parent().parent().parent().parent().find('i').rotate({animateTo: 0});
         if ($(this).attr('aria-expanded') == "false" || $(this).attr('aria-expanded') == undefined) {
             $(this).find('i').rotate({animateTo: 90});
@@ -98,6 +99,10 @@ $(document).ready(function () {
         var edited_element_id = '#' + $('#edited_element_id').val();
         var changedPropertyName = $(this).attr('name');
 
+
+        console.log(changedPropertyName);
+        console.log($(this).val());
+
         if(changedPropertyName.includes('column')) {
             if(changedPropertyName == "small-column") {
                 $(iframe).find(edited_element_id).alterClass('col-sm-*', $(this).val());
@@ -131,6 +136,16 @@ $(document).ready(function () {
     $('input[data-type="color"]').minicolors({
        format: 'rgb',
         theme: 'bootstrap',
+    });
+
+    $('.advanced').change(function() {
+        if($(this).prop('checked')) {
+            $(this).siblings('.advanced-option').show();
+            $(this).siblings('.basic-option').hide();
+        } else {
+            $(this).siblings('.advanced-option').hide();
+            $(this).siblings('.basic-option').show();
+        }
     });
 
     // Eksport wygenerowanego pliku
@@ -171,7 +186,8 @@ $(document).ready(function () {
         $('#preview-content').width(425);
     });
 
-    $('#close-preview').on('click', function () {
+    $('#close-preview').on('click', function (e) {
+        e.preventDefault();
         $('#preview').hide();
     });
 
@@ -181,6 +197,26 @@ $(document).ready(function () {
 
     $('#height-preview').on('input', function () {
         $('#preview-content').height($(this).val());
+    });
+
+    // Okno z kodem źródłowym
+    $('#btn-source').on('click', function () {
+        var headSrc = $($('#resultFrame').get(0).contentWindow.document.head).html();
+        var bodySrc = $($('#resultFrame').get(0).contentWindow.document.body);
+
+        bodySrc.find('.options-elements').remove();
+
+        var src = '<html><head>' + headSrc + '</head><body id="result-body">' + bodySrc.html() + '</body></html>';
+
+
+        $('#sourceModal').find('pre').text(src);
+    });
+
+    // Kopiuj źródło do schowka
+    $('#copy-to-clipboard').on('click', function () {
+        var element = $('#sourceModal').find('pre');
+
+        copyToClipboard(element);
     });
 
 
@@ -399,15 +435,31 @@ $(function () {
                     })
                     .on('mouseleave', function (event) {
                         event.preventDefault();
+                        // $(this).find('.options-elements').hide();
                         event.stopPropagation();
-                        $(this).find('.options-no-active').remove();
                     })
                     .on('mouseover', function (event) {
                         event.preventDefault();
-                        event.stopPropagation();
 
                         var attId = $(this).prop('tagName');
-                        //$(this).append(optionsElements).find('.label-element').html(attId);
+
+                        // $(this).find('.options-elements').show().find('.label-element').html(attId);
+                        $(this).addClass('hover');
+                        event.stopPropagation();
+                    })
+                    .on('mouseout', function (event) {
+                        event.preventDefault();
+                        // $(this).find('.options-elements').hide();
+                        event.stopPropagation();
+                        // $(this).find('.options-elements').hide();
+                        // $(resultFrame.document.body).find('.options-no-active').remove();
+                    })
+                    .on('mouseenter', function (event) {
+                        // event.preventDefault();
+                        // event.stopPropagation();
+
+                        var attId = $(this).prop('tagName');
+                        // $(this).append(optionsElements).addClass('options-active').find('.label-element').html(attId);
                         $(this).addClass('hover');
                     })
                     .on('dragstart', function (event) {
@@ -417,6 +469,7 @@ $(function () {
                     })
                     .on('mouseout', function (event) {
                         $(this).removeClass('hover forbidden');
+                        // $(this).find('.options-elements').remove();
                     });
 
                 $(this).find('.arr').remove();
@@ -521,6 +574,14 @@ function isAllowed(element, target) {
 	}
 
     return true;
+}
+
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
 }
 
 

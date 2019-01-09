@@ -34,6 +34,28 @@
     </div>
 </div>
 
+<div id="sourceModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Twój kod źródłowy:</h4>
+            </div>
+            <div class="modal-body">
+                <pre>
+
+                </pre>
+            </div>
+            <div class="modal-footer">
+                <button id="copy-to-clipboard" type="button" class="btn btn-success" data-dismiss="modal">Skopiuj do
+                    schowka
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <header>
     <div class="container-fluid">
@@ -65,7 +87,8 @@
                     <button id="btn-upload-source" type="submit" class="btn btn-success"><i class="fas fa-upload"></i>
                     </button>
                 </form>
-                <button class="btn btn-success"><i class="fas fa-code"></i></button>
+                <button id="btn-source" type="button" data-toggle="modal" data-target="#sourceModal"
+                        class="btn btn-success"><i class="fas fa-code"></i></button>
                 <button id="btn-preview" class="btn btn-success"><i class="fas fa-arrows-alt"></i></button>
                 <button id="btn-download-source" class="btn btn-success"><i class="fas fa-download"></i></button>
 
@@ -89,17 +112,18 @@
                     <div id="property1" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="property form-group form-inline" data-option-id="1">
-                                <label for="text">Tekst:</label>
+                                <label>Tekst:</label>
                                 <input class="form-control" type="text" name="text"/>
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#textModal">Więcej tekstu <i class="fas fa-expand"></i></button>
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                        data-target="#textModal">Więcej tekstu <i class="fas fa-expand"></i></button>
                             </div>
                             <div class="property form-group form-inline" data-option-id="2">
-                                <label for="text">Kolor czcionki:</label>
-                                <input class="form-control" data-type="color" type="text" name="color"/>
+                                <label for="color">Kolor czcionki:</label>
+                                <input id="color" class="form-control" data-type="color" type="text" name="color"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="3">
-                                <label for="text">Pozycja tekstu:</label>
-                                <select name="text-align">
+                                <label for="text-align">Pozycja tekstu:</label>
+                                <select id="text-align" name="text-align">
                                     <option value="left">Wyrównaj do lewej</option>
                                     <option value="center">Wyśrodkowany</option>
                                     <option value="right">Wyrównaj do prawej</option>
@@ -107,20 +131,48 @@
                                 </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="4">
-                                <label for="text">Rodzaj czcionki:</label>
-                                <input class="form-control" type="text" name="font-family"/>
+                                <label for="font-family">Rodzaj czcionki:</label>
+                                <select id="font-family" name="font-family">
+                                    <option value="">Brak</option>
+                                    <option value="'Abril Fatface', cursive">Abril Fatface</option>
+                                    <option value="'Archivo', sans-serif">Archivo</option>
+                                    <option value="'Arvo', serif">Arvo</option>
+                                    <option value="'Cardo', serif">Cardo</option>
+                                    <option value="'Concert One', cursive">Concert One</option>
+                                    <option value="'Cormorant', serif">Cormorant</option>
+                                    <option value="'Fjalla One', sans-serif">Fjalla One</option>
+                                    <option value="'Frank Ruhl Libre', serif">Frank Ruhl Libre</option>
+                                    <option value="'Karla', sans-serif">Karla</option>
+                                    <option value="'Lato', sans-serif">Lato</option>
+                                    <option value="'Lora', serif">Lora</option>
+                                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                                    <option value="'Old Standard TT', serif">Old Standard TT</option>
+                                    <option value="'Oswald', sans-serif">Oswald</option>
+                                    <option value="'Oxygen', sans-serif">Oxygen</option>
+                                    <option value="'PT Serif', serif">PT Serif</option>
+                                    <option value="'Playfair Display', serif">Playfair Display</option>
+                                    <option value="'Rakkas', cursive">Rakkas</option>
+                                    <option value="'Roboto', sans-serif">Roboto</option>
+                                    <option value="'Rubik', sans-serif">Rubik</option>
+                                    <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                                    <option value="'Spectral', serif">Spectral</option>
+                                    <option value="'Ubuntu', sans-serif">Ubuntu</option>
+                                    <option value="'Work Sans', sans-serif">Work Sans</option>
+                                    <option value="'Yatra One', cursive">Yatra One</option>
+                                </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="26">
-                                <label for="text">Styl tekstu:</label>
+                                <label>Styl tekstu:</label>
                                 <input type="button" name="font-style" data-default-value="true" value="italic">
                                 <input type="button" name="font-weight" data-default-value="true" value="bold">
                                 <input type="button" name="text-decoration" data-default-value="true" value="underline">
                                 <input type="button" name="text-decoration" data-default-value="true" value="overline">
-                                <input type="button" name="text-decoration" data-default-value="true" value="line-through">
+                                <input type="button" name="text-decoration" data-default-value="true"
+                                       value="line-through">
                             </div>
                             <div class="property form-group form-inline" data-option-id="27">
-                                <label for="text">Kapitalizacja tekstu:</label>
-                                <select name="text-transform">
+                                <label for="text-transform">Kapitalizacja tekstu:</label>
+                                <select id="text-transform" name="text-transform">
                                     <option value="none">Brak</option>
                                     <option value="uppercase">Wielkie litery</option>
                                     <option value="lowercase">Małe litery</option>
@@ -128,20 +180,20 @@
                                 </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="28">
-                                <label for="text">Interlinia:</label>
-                                <input class="form-control" type="text" name="line-height"/>
+                                <label for="line-height">Interlinia:</label>
+                                <input id="line-height" class="form-control" type="text" name="line-height"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="29">
-                                <label for="text">Odstęp między wyrazami:</label>
-                                <input class="form-control" type="text" name="word-spacing"/>
+                                <label for="word-spacing">Odstęp między wyrazami:</label>
+                                <input id="word-spacing" class="form-control" type="text" name="word-spacing"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="30">
-                                <label for="text">Odstęp między literami:</label>
-                                <input class="form-control" type="text" name="letter-spacing"/>
+                                <label for="letter-spacing">Odstęp między literami:</label>
+                                <input id="letter-spacing" class="form-control" type="text" name="letter-spacing"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="31">
-                                <label for="text">Łamanie białych znaków:</label>
-                                <select name="white-space">
+                                <label for="white-space">Łamanie białych znaków:</label>
+                                <select id="white-space" name="white-space">
                                     <option value="normal">Domyślne</option>
                                     <option value="nowrap">Brak łamania</option>
                                 </select>
@@ -161,64 +213,102 @@
                     <div id="property2" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="property form-group form-inline" data-option-id="5">
-                                <label for="font-size">Margines górny:</label>
-                                <input class="form-control" type="text" name="margin-top"/>
+                                <label for="margin-top">Margines górny:</label>
+                                <input id="margin-top" class="form-control" type="text" name="margin-top"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="6">
-                                <label for="font-size">Margines prawy:</label>
-                                <input class="form-control" type="text" name="margin-right"/>
+                                <label for="margin-right">Margines prawy:</label>
+                                <input id="margin-right" class="form-control" type="text" name="margin-right"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="7">
-                                <label for="font-size">Margines dolny:</label>
-                                <input class="form-control" type="text" name="margin-bottom"/>
+                                <label for="margin-bottom">Margines dolny:</label>
+                                <input id="margin-bottom" class="form-control" type="text" name="margin-bottom"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="8">
-                                <label for="font-size">Margines lewy:</label>
-                                <input class="form-control" type="text" name="margin-left"/>
+                                <label for="margin-left">Margines lewy:</label>
+                                <input id="margin-left" class="form-control" type="text" name="margin-left"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="9">
-                                <label for="font-size">Padding górny:</label>
-                                <input class="form-control" type="text" name="padding-top"/>
+                                <label for="padding-top">Padding górny:</label>
+                                <input id="padding-top" class="form-control" type="text" name="padding-top"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="10">
-                                <label for="font-size">Padding prawy:</label>
-                                <input class="form-control" type="text" name="padding-right"/>
+                                <label for="padding-right">Padding prawy:</label>
+                                <input id="padding-right" class="form-control" type="text" name="padding-right"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="11">
-                                <label for="font-size">Padding dolny:</label>
-                                <input class="form-control" type="text" name="padding-bottom"/>
+                                <label for="padding-bottom">Padding dolny:</label>
+                                <input id="padding-bottom" class="form-control" type="text" name="padding-bottom"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="12">
-                                <label for="font-size">Padding lewy:</label>
-                                <input class="form-control" type="text" name="padding-left"/>
+                                <label for="padding-left">Padding lewy:</label>
+                                <input id="padding-left" class="form-control" type="text" name="padding-left"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="13">
-                                <label for="font-size">Kolor tła:</label>
-                                <input class="form-control" type="text" data-type="color-bg" name="background-color"/>
+                                <label for="background-color">Kolor tła:</label>
+                                <input id="background-color" class="form-control" type="text" data-type="color-bg" name="background-color"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="14">
-                                <label for="font-size">Obramowanie:</label>
-                                <input class="form-control" type="text" name="border"/>
+                                <label for="border">Obramowanie:</label>
+                                <input id="border" class="form-control" type="text" name="border"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="15">
-                                <label for="font-size">Obrazek tła:</label>
-                                <input class="form-control" type="text" name="background-image"/>
+                                <label for="background-image">Obrazek tła:</label>
+                                <input id="background-image" class="form-control" type="text" name="background-image"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="23">
-                                <label for="font-size">Pozycja tła:</label>
-                                <input class="form-control" type="text" name="background-position"/>
+                                <label for="background-position">Pozycja tła:</label>
+                                <input id="background-position" type="checkbox" class="advanced" name="background-position" value="1">
+                                <div class="basic-option">
+                                    <p>Tryb podstawowy</p>
+                                    <select name="background-position">
+                                        <option>--Wybierz--</option>
+                                        <option value="left top">Lewy górny róg</option>
+                                        <option value="left center">Lewa środkowa część</option>
+                                        <option value="left bottom">Lewy dolny róg</option>
+                                        <option value="right top">Prawy górny róg</option>
+                                        <option value="right center">Prawa środkowa część</option>
+                                        <option value="right bottom">Prawy dolny róg</option>
+                                        <option value="center top">Górna środkowa część</option>
+                                        <option value="center center">Wyśrodkowane w X i Y</option>
+                                        <option value="center bottom">Dolna środkowa część</option>
+                                    </select>
+                                </div>
+                                <div class="advanced-option">
+                                    <p>Tryb zaawansowany</p>
+                                    <input class="form-control" type="text" name="background-position"/>
+                                </div>
                             </div>
                             <div class="property form-group form-inline" data-option-id="24">
-                                <label for="font-size">Rozmiar tła:</label>
-                                <input class="form-control" type="text" name="background-size"/>
+                                <label for="background-size">Rozmiar tła:</label>
+                                <input id="background-size" type="checkbox" class="advanced" name="background-size" value="1">
+                                <div class="basic-option">
+                                    <p>Tryb podstawowy</p>
+                                    <select name="background-size">
+                                        <option>--Wybierz--</option>
+                                        <option value="initial">Początkowy</option>
+                                        <option value="cover">Wypełnienie</option>
+                                        <option value="contain">Dopasowany</option>
+                                    </select>
+                                </div>
+                                <div class="advanced-option">
+                                    <p>Tryb zaawansowany</p>
+                                    <input class="form-control" type="text" name="background-size"/>
+                                </div>
                             </div>
                             <div class="property form-group form-inline" data-option-id="25">
-                                <label for="font-size">Powtarzaj tło:</label>
-                                <input class="form-control" type="text" name="background-repeat"/>
+                                <label for="background-repeat">Powtarzaj tło:</label>
+                                <select id="background-repeat" name="background-repeat">
+                                    <option>--Wybierz--</option>
+                                    <option value="no-repeat">Nie powtarzaj</option>
+                                    <option value="repeat-x">Powtarzaj w osi X</option>
+                                    <option value="repeat-y">Powtarzaj w osi X</option>
+                                    <option value="repeat">Powtarzaj w osi X i Y</option>
+                                </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="18">
-                                <label for="text">Położenie obrazka:</label>
-                                <select name="small-column">
+                                <label for="small-column">Położenie obrazka:</label>
+                                <select id="small-column" name="small-column">
                                     <option value="unset">Brak</option>
                                     <option value="scroll">Przewijalne</option>
                                     <option value="fixed">Stałe</option>
@@ -239,8 +329,8 @@
                     <div id="property3" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="property form-group form-inline" data-option-id="18">
-                                <label for="text">Ilość kolumn na telefonach:</label>
-                                <select name="small-column">
+                                <label for="small-column">Ilość kolumn na telefonach:</label>
+                                <select id="small-column" name="small-column">
                                     <option value="col-sm-1">1</option>
                                     <option value="col-sm-2">2</option>
                                     <option value="col-sm-3">3</option>
@@ -256,8 +346,8 @@
                                 </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="18">
-                                <label for="text">Ilość kolumn na tabletach/laptopach:</label>
-                                <select name="medium-column">
+                                <label for="medium-column">Ilość kolumn na tabletach/laptopach:</label>
+                                <select id="medium-column" name="medium-column">
                                     <option value="col-md-1">1</option>
                                     <option value="col-md-2">2</option>
                                     <option value="col-md-3">3</option>
@@ -273,8 +363,8 @@
                                 </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="18">
-                                <label for="text">Ilość kolumn na urządzeniach średnich ekranach:</label>
-                                <select name="large-column">
+                                <label for="large-column">Ilość kolumn na urządzeniach średnich ekranach:</label>
+                                <select id="large-column" name="large-column">
                                     <option value="col-lg-1">1</option>
                                     <option value="col-lg-2">2</option>
                                     <option value="col-lg-3">3</option>
@@ -290,8 +380,8 @@
                                 </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="18">
-                                <label for="text">Ilość kolumn na dużych ekranach:</label>
-                                <select name="xlarge-column">
+                                <label for="xlarge-column">Ilość kolumn na dużych ekranach:</label>
+                                <select id="xlarge-column" name="xlarge-column">
                                     <option value="col-xl-1">1</option>
                                     <option value="col-xl-2">2</option>
                                     <option value="col-xl-3">3</option>
@@ -307,12 +397,12 @@
                                 </select>
                             </div>
                             <div class="property form-group form-inline" data-option-id="19">
-                                <label for="font-size">Szerokość</label>
-                                <input class="form-control" type="text" name="width"/>
+                                <label for="width">Szerokość</label>
+                                <input id="width" class="form-control" type="text" name="width"/>
                             </div>
                             <div class="property form-group form-inline" data-option-id="20">
-                                <label for="font-size">Wysokość</label>
-                                <input class="form-control" type="text" name="height"/>
+                                <label for="height">Wysokość</label>
+                                <input id="height" class="form-control" type="text" name="height"/>
                             </div>
                         </div>
                     </div>
@@ -329,13 +419,132 @@
                     <div id="property4" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="property form-group form-inline" data-option-id="21">
-                                <label for="text">Odnośnik:</label>
-                                <input class="form-control" type="text" name="href">
+                                <label for="href">Odnośnik:</label>
+                                <input id="href" class="form-control" type="text" name="href">
                             </div>
                             <div class="property form-group form-inline" data-option-id="22">
-                                <label for="text">Źródło obrazka:</label>
-                                <input class="form-control" type="text" name="src">
+                                <label for="src">Źródło obrazka:</label>
+                                <input id="src" class="form-control" type="text" name="src">
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="expand-property" data-toggle="collapse" data-parent="#accordion-properties"
+                               href="#property5">
+                                <i class="fas fa-angle-right"></i> Obramowanie:
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="property5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <!-- OBRAMOWANIE LEWE -->
+                            <div class="property form-group form-inline" data-option-id="32">
+                                <label for="border-left-style">Lewe obramowanie styl:</label>
+                                <select id="border-left-style" name="border-left-style">
+                                    <option>--Wybierz--</option>
+                                    <option value="none">Brak</option>
+                                    <option value="dotted">Kropkowane</option>
+                                    <option value="dashed ">Kreskowane</option>
+                                    <option value="solid">Ciągłe</option>
+                                    <option value="double ">Podwójne</option>
+                                </select>
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="33">
+                                <label for="border-left-color">Lew obramowanie kolor:</label>
+                                <input id="border-left-color" class="form-control" type="text" name="border-left-color" data-type="color">
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="34">
+                                <label for="border-left-width">Lew obramowanie rozmiar:</label>
+                                <input id="border-left-width" class="form-control" type="text" name="border-left-width">
+                            </div>
+
+                            <!-- OBRAMOWANIE GÓRNE -->
+                            <div class="property form-group form-inline" data-option-id="35">
+                                <label for="border-top-style">Górne obramowanie styl:</label>
+                                <select id="border-top-style" name="border-left-style">
+                                    <option>--Wybierz--</option>
+                                    <option value="none">Brak</option>
+                                    <option value="dotted">Kropkowane</option>
+                                    <option value="dashed ">Kreskowane</option>
+                                    <option value="solid">Ciągłe</option>
+                                    <option value="double ">Podwójne</option>
+                                </select>
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="36">
+                                <label for="border-top-color">Górne obramowanie kolor:</label>
+                                <input id="border-top-color" class="form-control" type="text" name="border-top-color" data-type="color">
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="37">
+                                <label for="text">Górne obramowanie rozmiar:</label>
+                                <input class="form-control" type="text" name="border-top-width">
+                            </div>
+
+                            <!-- OBRAMOWANIE PRAWE -->
+                            <div class="property form-group form-inline" data-option-id="38">
+                                <label for="border-right-style">Prawe obramowanie styl:</label>
+                                <select id="border-right-style" name="border-left-style">
+                                    <option>--Wybierz--</option>
+                                    <option value="none">Brak</option>
+                                    <option value="dotted">Kropkowane</option>
+                                    <option value="dashed ">Kreskowane</option>
+                                    <option value="solid">Ciągłe</option>
+                                    <option value="double ">Podwójne</option>
+                                </select>
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="39">
+                                <label for="border-right-color">Prawe obramowanie kolor:</label>
+                                <input id="border-right-color" class="form-control" type="text" name="border-right-color" data-type="color">
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="40">
+                                <label for="border-right-width">Prawe obramowanie rozmiar:</label>
+                                <input id="border-right-width" class="form-control" type="text" name="border-right-width">
+                            </div>
+
+                            <!-- OBRAMOWANIE DOLNE -->
+                            <div class="property form-group form-inline" data-option-id="41">
+                                <label for="border-bottom-style">Dolne obramowanie styl:</label>
+                                <select id="border-bottom-style" name="border-left-style">
+                                    <option>--Wybierz--</option>
+                                    <option value="none">Brak</option>
+                                    <option value="dotted">Kropkowane</option>
+                                    <option value="dashed ">Kreskowane</option>
+                                    <option value="solid">Ciągłe</option>
+                                    <option value="double ">Podwójne</option>
+                                </select>
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="42">
+                                <label for="border-bottom-color">Dolne obramowanie kolor:</label>
+                                <input id="border-bottom-color" class="form-control" type="text" name="border-bottom-color" data-type="color">
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="43">
+                                <label for="border-bottom-width">Dolne obramowanie rozmiar:</label>
+                                <input id="border-bottom-width" class="form-control" type="text" name="border-bottom-width">
+                            </div>
+
+                            <!-- OBRAMOWANIE OGÓLNE -->
+                            <div class="property form-group form-inline" data-option-id="44">
+                                <label for="border-style">Ogólne obramowanie styl:</label>
+                                <select id="border-style" name="border-style">
+                                    <option>--Wybierz--</option>
+                                    <option value="none">Brak</option>
+                                    <option value="dotted">Kropkowane</option>
+                                    <option value="dashed ">Kreskowane</option>
+                                    <option value="solid">Ciągłe</option>
+                                    <option value="double ">Podwójne</option>
+                                </select>
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="45">
+                                <label for="border-color">Ogólne obramowanie kolor:</label>
+                                <input id="border-color" class="form-control" type="text" name="border-color" data-type="color">
+                            </div>
+                            <div class="property form-group form-inline" data-option-id="46">
+                                <label for="border-width">Ogólne obramowanie rozmiar:</label>
+                                <input id="border-width" class="form-control" type="text" name="border-width">
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -348,19 +557,24 @@
 <div id="preview">
     <div id="devices-options">
         <div class="row">
-            <div class="text-left col-md-4">
+            <div class="text-left col-md-2">
                 <button id="desktop-view" type="button"><i class="fas fa-desktop"></i></button>
                 <button id="tablet-view" type="button"><i class="fas fa-tablet-alt"></i></button>
                 <button id="mobile-view" type="button"><i class="fas fa-mobile-alt"></i></button>
             </div>
 
-            <div class="text-center col-md-4">
-                <input id="width-preview" type="text" value=""> px
-                <input id="height-preview" type="text" value=""> px
-
+            <div class="text-center col-md-8">
+                <label for="width-preview">Szerokość:
+                    <input id="width-preview" type="text" value=""> px
+                </label>
+                <label for="height-preview" style="margin-left: 30px">Wysokość:
+                    <input id="height-preview" type="text" value=""> px
+                </label>
             </div>
-            <div class="text-right col-md-4">
-                <i id="close-preview" class="fas fa-times"></i>
+            <div class="text-right col-md-2">
+                <button id="close-preview">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
         </div>
     </div>

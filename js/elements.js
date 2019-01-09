@@ -6,7 +6,7 @@ var elements = {
                 'displayName':'Kontener',
                 'icon': '<i class="far fa-square"></i>',
                 'name':'container',
-                'source':'<div draggable="true" class="container cont-black draggable" data-allowedOptions="[3,13,15,23,24,25,19,20]" data-forbiddenElements=""></div>',
+                'source':'<div draggable="true" class="container cont-black draggable" data-allowedOptions="[3,13,15,23,24,25,19,20,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46]" data-forbiddenElements=""></div>',
                 'allowedOptions' : []
             },
             {
@@ -16,13 +16,6 @@ var elements = {
                 'source':'<div draggable="true" class="container-fluid draggable" data-allowedOptions="[3,13,15,23,24,25,19,20]" data-forbiddenElements=""></div>',
                 'allowedOptions' : []
             },
-            // {
-            //     'displayName':'Row Grid',
-            //     'icon':'<i class="fas fa-th"></i>',
-            //     'name':'row-grid',
-            //     'source':'<div draggable="true" class="row draggable" data-allowedOptions="[3]"><div class="moveable col-xs-4 col-sm-4 col-md-4 col-lg-4">col-4</div><div class="moveable col-xs-4 col-sm-4 col-md-4 col-lg-4">col-4</div><div class="moveable col-xs-4 col-sm-4 col-md-4 col-lg-4">col-4</div></div>',
-            //     'allowedOptions' : []
-            // },
             {
                 'displayName':'Wiersz',
                 'icon':'<i class="fas fa-th"></i>',
@@ -34,7 +27,7 @@ var elements = {
                 'displayName':'Kolumna',
                 'icon':'<i class="fas fa-th"></i>',
                 'name':'Column',
-                'source':'<div draggable="true" class="col-sm-3 draggable" data-allowedOptions="[3,13,18,15,23,24,25,19,20]" data-forbiddenElements=""></div>',
+                'source':'<div draggable="true" class="col-sm-3 draggable" data-allowedOptions="[3,13,18,15,23,24,25,19,20,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46]" data-forbiddenElements=""></div>',
                 'allowedOptions': []
             }
 
@@ -154,7 +147,7 @@ var elements = {
                 'displayName': 'Komórka tabeli',
                 'icon': '',
                 'name': 'td',
-                'source': '<td draggable="true" class="draggable" data-allowedoptions="[]" data-forbiddenElements="tr"></td>'
+                'source': '<td draggable="true" class="draggable" data-allowedoptions="[1,2,3,5,6,7,8,9,10,11,12]" data-forbiddenElements="tr"></td>'
             }
         ]
     }
