@@ -507,16 +507,12 @@ function getOptions(allowedOptions, element) {
                 $(this).find('input[data-default-value!="true"]').val('');
                 $(this).find('select option:first').prop('selected', true);
                 $('.minicolors-swatch-color').css({'background-color':'unset'});
-                $('body').find("[name=text]").val($(element).text());
                 $.each(elementStyle, function (key, index) {
                     $('#accordion-properties').find("[name="+ index + "]").val(elementStyle[index]);
                 });
-
             } else {
                 $(this).show();
-
-
-                $(this).find('input[name=' + inputName + ']').val(inputVal);
+                $(this).find('[name=' + inputName + ']').val(inputVal);
 
                 if(inputType == "select") {
                     $(this).find('select option[value='+ inputVal +']').prop('selected', true);
@@ -525,8 +521,8 @@ function getOptions(allowedOptions, element) {
                 if(inputName == "background-color") {
                     $('.minicolors-swatch-color').css({'background-color':inputVal});
                 }
-
             }
+            $('body').find("[name=text]").val($(element).text());
         }
     });
 }
