@@ -6,28 +6,28 @@ var elements = {
                 'displayName':'Kontener',
                 'icon': '<i class="far fa-square"></i>',
                 'name':'container',
-                'source':'<div draggable="true" class="container cont-black draggable" data-allowedOptions="[3,13,15,23,24,25,19,20,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46]" data-forbiddenElements=""></div>',
+                'source':'<div draggable="true" class="container cont-black draggable" data-allowedOptions="[3,9,10,11,12,13,15,23,24,25,19,20,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46]" data-forbiddenElements=""></div>',
                 'allowedOptions' : []
             },
             {
                 'displayName':'Elastyczny Kontener',
                 'icon': '<i class="far fa-square"></i>',
                 'name':'container-fluid',
-                'source':'<div draggable="true" class="container-fluid draggable" data-allowedOptions="[3,13,15,23,24,25,19,20]" data-forbiddenElements=""></div>',
+                'source':'<div draggable="true" class="container-fluid draggable" data-allowedOptions="[3,5,6,7,8,9,10,11,12,13,15,23,24,25,19,20]" data-forbiddenElements=""></div>',
                 'allowedOptions' : []
             },
             {
                 'displayName':'Wiersz',
                 'icon':'<i class="fas fa-th"></i>',
                 'name':'row',
-                'source':'<div draggable="true" class="row draggable" data-allowedOptions="[3,13]" data-forbiddenElements=""></div>',
+                'source':'<div draggable="true" class="row draggable" data-allowedOptions="[3,5,6,7,8,9,10,11,12,13]" data-forbiddenElements=""></div>',
                 'allowedOptions' : []
             },
             {
                 'displayName':'Kolumna',
                 'icon':'<i class="fas fa-th"></i>',
                 'name':'Column',
-                'source':'<div draggable="true" class="col-sm-3 draggable" data-allowedOptions="[3,13,18,15,23,24,25,19,20,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46]" data-forbiddenElements=""></div>',
+                'source':'<div draggable="true" class="col-sm-3 draggable" data-allowedOptions="[3,5,6,7,8,9,10,11,12,13,18,15,23,24,25,19,20,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46]" data-forbiddenElements=""></div>',
                 'allowedOptions': []
             }
 
@@ -40,21 +40,21 @@ var elements = {
                 'displayName':'Nagłówek 1',
                 'icon': '<i class="fas fa-heading"></i>',
                 'name':'h1',
-                'source':'<h1 draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,8,9]" data-forbiddenElements="">Nagłówek 1</h1>',
+                'source':'<h1 draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8,9]" data-forbiddenElements="">Nagłówek 1</h1>',
                 'allowedOptions' : [1,2,3,4,5,8,9]
             },
             {
                 'displayName':'Nagłówek 2',
                 'icon': '<i class="fas fa-heading"></i>',
                 'name':'h2',
-                'source':'<h2 draggable="true" class="draggable" data-allowedOptions="[1,2]" data-forbiddenElements="">Nagłówek 2</h2>',
+                'source':'<h2 draggable="true" class="draggable" data-allowedOptions="[1,2,5,6,7,8,9,10,11,12]" data-forbiddenElements="">Nagłówek 2</h2>',
                 'allowedOptions' : [1,2,3,4,5,8,9]
             },
             {
                 'displayName':'Nagłówek 3',
                 'icon': '<i class="fas fa-heading"></i>',
                 'name':'h3',
-                'source':'<h3 draggable="true" class="draggable" data-allowedOptions="[1]" data-forbiddenElements="">Nagłówek 3</h3>',
+                'source':'<h3 draggable="true" class="draggable" data-allowedOptions="[1,9,10,11,12]" data-forbiddenElements="">Nagłówek 3</h3>',
                 'allowedOptions' : [1,2,3,4,5,8,9]
             },
         ]
@@ -66,14 +66,14 @@ var elements = {
                 'displayName' : 'Paragraf',
                 'icon':'<i class="fas fa-paragraph"></i>',
                 'name':'p',
-                'source':'<p draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,26,27,28,29,30,19,20,31]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</p>',
+                'source':'<p draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8,9,10,11,12,26,27,28,29,30,19,20,31,47]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</p>',
                 'allowedOptions': []
             },
             {
                 'displayName' : 'Zwykły tekst',
                 'icon':'<i class="fas fa-font"></i>',
                 'name':'span',
-                'source':'<span draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,26,27,28,29,30,19,20,31]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</span>',
+                'source':'<span draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8,26,27,28,29,30,19,20,31,47]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</span>',
                 'allowedOptions': []
             }
         ]
@@ -85,7 +85,7 @@ var elements = {
                 'displayName' : 'Hiperłącze',
                 'icon':'<i class="fas fa-link"></i>',
                 'name':'h',
-                'source':'<a href="" draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,18,21]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</a>',
+                'source':'<a href="" draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,18,21,26,27,28,29,47]" data-forbiddenElements="">Lorem ipsum, Lorem ipsum, Lorem ipsum,</a>',
                 'allowedOptions': []
             }
         ]
@@ -97,14 +97,14 @@ var elements = {
                 'displayName' : 'Lista uporządkowana',
                 'icon': '<i class="fas fa-list-ol"></i>',
                 'name':'ol',
-                'source': '<ol draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8]" data-forbiddenElements=""></ol>',
+                'source': '<ol draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8,9,10,11,12]" data-forbiddenElements=""></ol>',
                 'allowedOptions':[]
             },
             {
                 'displayName' : 'Lista nie uporządkowana',
                 'icon': '<i class="fas fa-list-ul"></i>',
                 'name':'ul',
-                'source': '<ul draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8]" data-forbiddenElements=""></ul>',
+                'source': '<ul draggable="true" class="draggable" data-allowedOptions="[1,2,3,4,5,6,7,8,9,10,11,12]" data-forbiddenElements=""></ul>',
                 'allowedOptions':[]
             },
             {
